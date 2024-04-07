@@ -1,13 +1,14 @@
-# React Movie Website
+# React Movie Website Streaming Platform
 
-Welcome to the React Movie Website repository! This project is a responsive React application that allows users to explore a vast collection of movies using an API.
-A responsive react movies web with advance features using the reactjs many more latest react library.
+Welcome to the React Movie Website repository! This project is a responsive React application that allows users to explore a vast collection of movies using an API. The users can also stream movies.
+
 ## Features
 
 - Responsive design ensures optimal viewing experience across various devices.
 - Intuitive interface for seamless navigation and exploration of movies.
 - Extensive library of movies categorized for easy browsing.
 - Access to movie details, trailers, and reviews to enhance your viewing experience.
+- Hd movies streaming 
 
 
 ## Resources
