@@ -53,3 +53,6 @@ npm install
 Once the installation is complete, start the project using the following command:
 
 npm start
+
+# Important Note:
+Change "YOUR_API_KEY" in apiConfig.js file in api folder with your api that you can get from the https://developer.themoviedb.org/reference/intro/getting-started
