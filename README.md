@@ -29,6 +29,8 @@ Check out some snapshots of the React Movie Website:
 
 ![Preview 4](https://user-images.githubusercontent.com/67447840/136721118-cf5c59d2-31ff-4b06-86cb-262dd1b655fc.png "Responsive React Movies App With API")
 
+![Alt text](url_of_your_image)
+
 Experience the seamless browsing experience and discover your favorite movies with our React Movie Website!
 
 ## GitHub Clone
