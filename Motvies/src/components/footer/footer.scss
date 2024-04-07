@@ -1,0 +1,86 @@
+@use '../../scss/' as *;
+
+.footer {
+    position: relative;
+    padding: 6rem 2rem;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &__content {
+        max-width: 1000px;
+
+        &__logo {
+            @include flex (center, center);
+            margin-bottom: 3rem;
+        }
+
+        &__menus {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            @include mobile {
+            grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        &__menu {
+            @include flex(flex-start, flex-start);
+            flex-direction: column;
+            margin-top: 1rem;
+
+            font-size: 1.5rem;
+            font-weight: 600;
+
+            & > * ~ * {
+                margin-top: 1rem;
+            }
+        }
+        .infoText {
+            font-size: 12px;
+            line-height: 20px;
+            opacity: 0.5;
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 30px;
+            position: absolute;
+            bottom: 0.5rem;
+
+
+            @include mobile {
+                font-size: 14px;
+                margin-bottom: 30px;
+            }
+        }
+
+        .socialIcons {
+            @include flex(center, center);
+            display: flex;
+            gap: 5px;
+            position: absolute;
+            bottom: 0;
+            left: 2rem;
+            margin-bottom: 10px;
+
+    
+    
+            .icon {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: $black;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all ease 0.3s;
+                &:hover {
+                    box-shadow: 0 0 0.625em $white;
+                    color: $white;
+                }
+            }
+        }
+    }
+   
+}
+
