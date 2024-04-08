@@ -1,7 +1,7 @@
 
 # Netlify Deployed:
 
-You can direclty access motvies web by clicking the link below:
+You can direclty access motvies web by clicking the link:
 https://motvies.netlify.app/
 
 # React Movie Website Streaming Platform
