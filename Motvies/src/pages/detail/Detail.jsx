@@ -6,9 +6,14 @@ import './detail.scss';
 import CastList from './CastList';
 import VideoList from './VideoList';
 import MovieList from '../../components/movie-list/MovieList';
+import OutlineButton from '../../components/button/Button';
+import Modal, { ModalContent } from '../../components/modal/Modal';
+
 const Detail = () => {
   const { category, id } = useParams();
   const [item, setItem] = useState(null);
+  const [trailerModalActive, setTrailerModalActive] = useState(false);
+  const [trailerKey, setTrailerKey] = useState(null);
 
   useEffect(() => {
     const getDetail = async () => {
@@ -18,6 +23,23 @@ const Detail = () => {
     };
     getDetail();
   }, [category, id]);
+
+  const setModalActive = async () => {
+    setTrailerModalActive(true);
+    fetchTrailer();
+  };
+
+  const closeModal = () => {
+    setTrailerModalActive(false);
+    setTrailerKey(null);
+  };
+
+  const fetchTrailer = async () => {
+    const videos = await tmdbApi.getVideos(category, id);
+    if (videos.results.length > 0) {
+      setTrailerKey(videos.results[0].key);
+    }
+  };
 
   return (
     <>
@@ -37,7 +59,13 @@ const Detail = () => {
                   <span key={i} className="genres__item">{genre.name}</span>
                 ))}
               </div>
+
               <p className="overview">{item.overview}</p>
+              <div className="btns">
+                <OutlineButton onClick={setModalActive}>
+                  Watch Trailer
+                </OutlineButton>
+              </div>
               <div className="cast">
                 <div className="section__header">
                   <h2>Casts</h2>
@@ -57,6 +85,20 @@ const Detail = () => {
               <MovieList category={category} type="similar" id={item.id}/>
             </div>
           </div>
+          <Modal active={trailerModalActive} onClose={closeModal}>
+            <ModalContent>
+              {trailerKey ? (
+                <iframe
+                  width="100%"
+                  height="500px"
+                  src={`https://www.youtube.com/embed/${trailerKey}`}
+                  title="trailer"
+                ></iframe>
+              ) : (
+                <p>No trailer available</p>
+              )}
+            </ModalContent>
+          </Modal>
         </>
       )}
     </>
