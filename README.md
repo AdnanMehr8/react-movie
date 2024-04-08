@@ -21,10 +21,14 @@ Welcome to the React Movie Website repository! This project is a responsive Reac
 ## Preview
 
 Check out some snapshots of the React Movie Website:
-
-
-
-![Preview 5](https://github.com/AdnanMehr8/react-movie/blob/main/Motvies/src/assets/Screenshot%20(43).png?raw=true)
+![Preview 1](https://github.com/AdnanMehr8/react-movie/blob/main/Motvies/src/assets/ss/1Capture.PNG?raw=true)
+![Preview 2](https://github.com/AdnanMehr8/react-movie/blob/main/Motvies/src/assets/ss/3Capture.PNG?raw=true)
+![Preview 3](https://github.com/AdnanMehr8/react-movie/blob/main/Motvies/src/assets/ss/4Capture.PNG?raw=true)
+![Preview 4](https://github.com/AdnanMehr8/react-movie/blob/main/Motvies/src/assets/ss/5Capture.PNG?raw=true)
+![Preview 5](https://github.com/AdnanMehr8/react-movie/blob/main/Motvies/src/assets/ss/6Capture.PNG?raw=true)
+![Preview 6](https://github.com/AdnanMehr8/react-movie/blob/main/Motvies/src/assets/ss/7Capture.PNG?raw=true)
+![Preview 7](https://github.com/AdnanMehr8/react-movie/blob/main/Motvies/src/assets/ss/8Capture.PNG?raw=true)
+![Preview 8](https://github.com/AdnanMehr8/react-movie/blob/main/Motvies/src/assets/Screenshot%20(43).png?raw=true)
 
 Experience the seamless browsing experience and discover your favorite movies with our React Movie Website!
 
