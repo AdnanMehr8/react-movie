@@ -1,3 +1,9 @@
+
+# Netlify Deployed:
+
+You can direclty access motvies web by clicking the link below:
+https://motvies.netlify.app/
+
 # React Movie Website Streaming Platform
 
 Welcome to the React Movie Website repository! This project is a responsive React application that allows users to explore a vast collection of movies using an API. The users can also stream movies.
