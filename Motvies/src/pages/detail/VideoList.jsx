@@ -1,72 +1,84 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
-import tmdbApi from '../../api/tmdbApi';
 
-const VideoList = props => {    
-    const { category } = useParams();
-    const [video, setVideo] = useState(null);
+import './video.scss';
 
-    useEffect(() => {
-        const getVideos = async () => {
-            const res = await tmdbApi.getVideos(category, props.id);
-            if (res.results.length > 0) {
-                setVideo(res.results[0]);
-            }
+const VideoList = () => {
+  const { type, id, season, episode } = useParams();
+  
+
+  useEffect(() => {
+    const iframeElement = document.querySelector("iframe");
+
+    if (iframeElement) {
+      // Check if the document is currently in fullscreen mode
+      if (
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement
+      ) {
+        // Exit fullscreen mode if active
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
         }
-        getVideos();
-    }, [category, props.id]);
-    
-    return (
-        <>
-            {video && <Video item={video} category={category}/>}
-        </>
-    );
-}
-
-const Video = props => {
-    const item = props.item;
-    const { category } = props;
-    const { id, season, episode } = useParams();
-    const iframeRef = useRef(null);
-
-    useEffect(() => {
-        const resizeIframe = () => {
-            const height = iframeRef.current.offsetWidth * 9 / 16 + 'px';
-            iframeRef.current.setAttribute('height', height);
-        };
-        resizeIframe();
-        window.addEventListener('resize', resizeIframe);
-        return () => {
-            window.removeEventListener('resize', resizeIframe);
-        };
-    }, []);
-
-    let videoUrl;
-    if (category === "movie") {
-        videoUrl = `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`;
-    } else if (category === "tv") {
-        // If episode is available, construct the URL with season and episode, otherwise just use season
-        if (episode) {
-            videoUrl = `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${season}&e=${episode}`;
-        } else {
-            videoUrl = `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${season}`;
-        }
+      }
     }
+  }, []); // Empty dependency array to run this effect only once
 
-    
-    return (
-        <div className="video">
-            <div className="video__title">
-                {/* <h2>{item.name}</h2> */}
-            </div>
-            <iframe 
-                src={videoUrl}
-                ref={iframeRef}
-                width="100%"
-                title="video"
-            ></iframe>
-        </div>
-    )
-}
+  return (
+    <div>
+      {type === "movie" ? (
+        // Render movie video
+        <iframe
+          allowFullScreen
+          // src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`}
+          src={`https://v2.vidsrc.me/embed/`}
+          width="100%"
+          height="100%"
+          style={{
+            height: "100vh",
+            width: "100%",
+          }}
+        />
+      ) : (
+        // Render TV show episode list
+        <div>
+  {/* Render episode list and individual episode */}
+
+  <ul>
+    {/* Render list of episodes */}
+    {[].map((episodeNumber) => (
+      <li key={episodeNumber}>
+        {/* Render individual episode */}
+        <a
+          href={`/tv/${id}/${season}/${episodeNumber}`}
+        >{`Episode ${episodeNumber}`}</a>
+      </li>
+    ))}
+  </ul>
+  {/* Render selected episode */}
+  <iframe
+    allowFullScreen
+    // src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${season}&e=${episode}`}
+    src={`https://v2.vidsrc.me/embed/${id}`}
+    width="100%"
+    height="100%"
+    style={{
+      height: "100vh",
+      width: "100%",
+    }}
+  />
+</div>
+      )}
+    </div>
+  );
+};
 
 export default VideoList;
